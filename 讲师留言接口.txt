@@ -1,0 +1,47 @@
+1、未读留言消息列表(commenttype=1 课程留言，commenttype=2 名师坊留言)  92
+		/user/api/userlogined/unreadCommentList
+
+2、已读留言消息列表
+		/user/api/userlogined/readCommentList
+		
+3、已回复消息列表
+		/user/api/userlogined/replyList
+4、点击未读消息时修改是否已读状态未已读
+		/user/api/userlogined/changeReadState
+		参数 (int) commenttype -- 留言类型 ,列表中有返回
+			 (int) commentid -- 留言id
+5、回复留言
+		/user/api/userlogined/reply
+		参数 (int) commenttype, 留言类型
+			 (int) commentid, 留言id
+			 (String) content, 回复内容
+			 (int) visibletype, 可见类型（0 所有人可见，1 仅提问用户可见）
+			 (int) courseid 课程id 
+			 (int) parentid
+			 (int) replyid
+			 
+			 
+			 
+6、根据讲师提现金额获取到款金额	（个人提现）
+		/user/api/userlogined/getLectWithdrawArrival 
+		参数 (BigDecimal) amount,提现金额
+
+7、提交提现申请
+		/user/api/userlogined/submitLectWithdrawApply
+		参数 (int) type, 提现类型（1 个人提现，2 公对公提现）
+		     (BigDecimal) amount, 提现金额
+			 (String) name, 姓名
+			 (String) tel, 电话
+			 (String) taxurl,图片
+			 (BigDecimal) withdrawarrival, 应到款金额
+			 (String) provider, wxmp,android,ios
+			 (String) company, 公司名称
+
+8、提现记录列表
+        /user/api/userlogined/lectWithdrawList
+		参数 (int) state, 申请状态
+		
+9、讲师分佣明细
+		/user/api/userlogined/lectBalanceChangeDetail
+		
+		/user/api/userlogined/uploadTaxImg
