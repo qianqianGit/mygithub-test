@@ -1,0 +1,30 @@
+SELECT * FROM t_lecture_comment WHERE lectid = 18  AND state = 1
+
+SELECT c.*,u.nickname,u.headimgurl,gj.no gjstuno,gj.level
+FROM t_lecture_comment c LEFT JOIN t_user u on  c.userid = u.id 
+ left join t_gj_student  gj on gj.id = u.gjstuid
+ WHERE c.state = 1 AND c.parentid IS null and c.lectid = 18 ORDER BY c.istop DESC , c.updatetime asc
+ 
+ 
+ SELECT DISTINCT c.*,l.name, l.avatar,g.goodstate,u.nickname,u.headimgurl FROM t_lecture_comment c LEFT JOIN t_lect l on  c.lectid = l.id
+ LEFT JOIN t_lecture_good g ON c.id = g.commentid 
+ LEFT JOIN t_user u on  c.userid = u.id 
+ WHERE c.state = 1  AND c.parentid IN ( 12,20,77  ) ORDER BY c.parentid , c.updatetime ASC
+ 
+ 
+ 
+--已回复的顶层留言
+ SELECT c.*,u.nickname,u.headimgurl,gj.no gjstuno,gj.level
+FROM t_lecture_comment c LEFT JOIN t_user u on  c.userid = u.id 
+ left join t_gj_student  gj on gj.id = u.gjstuid
+ WHERE c.state = 1 AND c.parentid IS null and c.lectid = 18 AND c.id  IN (
+ SELECT replyid FROM t_lecture_comment WHERE state = 1 AND islect = 1 AND lectid = 18)  ORDER BY c.istop DESC , c.updatetime asc
+ 
+ 
+ --已回复的回复留言
+  SELECT DISTINCT c.*,l.name, l.avatar,g.goodstate,u.nickname,u.headimgurl FROM t_lecture_comment c LEFT JOIN t_lect l on  c.lectid = l.id
+ LEFT JOIN t_lecture_good g ON c.id = g.commentid 
+ LEFT JOIN t_user u on  c.userid = u.id 
+ WHERE c.state = 1  AND c.parentid IN ( 12,20) 
+ AND c.id not IN (SELECT replyid FROM t_lecture_comment WHERE state = 1 AND lectid = 18) AND 
+ ORDER BY c.parentid , c.updatetime ASC
