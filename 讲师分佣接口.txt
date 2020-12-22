@@ -17,5 +17,5 @@
         /user/api/userlogined/lectWithdrawList
 		参数 (int) state, 申请状态
 		
-9、讲师分佣明细
+9、讲师分佣明细1
 		/user/api/userlogined/lectBalanceChangeDetail
